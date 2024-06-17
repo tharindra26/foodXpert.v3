@@ -1,20 +1,28 @@
 package com.foodXpert.productservice.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(value = "f_product_categories")
+import java.util.List;
+
+@Entity
+@Table(name = "product_categories")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class Category {
+public class Category{
+
     @Id
-    private String id;
-    private String CategoryName;
-    private String CategoryDescription;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String categoryName;
+    private String categoryDescription;
+
+    @OneToMany(mappedBy = "productCategory")
+    private List<Product> products;
 }

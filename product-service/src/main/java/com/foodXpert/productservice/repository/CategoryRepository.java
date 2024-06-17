@@ -1,7 +1,7 @@
 package com.foodXpert.productservice.repository;
 
 import com.foodXpert.productservice.model.Category;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CategoryRepository extends MongoRepository<Category, String> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 }

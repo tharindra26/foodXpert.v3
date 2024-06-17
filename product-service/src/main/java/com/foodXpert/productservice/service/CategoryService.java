@@ -17,10 +17,10 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    public String createCategory(CategoryRequestDTO categoryRequestDTO) {
+    public Long createCategory(CategoryRequestDTO categoryRequestDTO) {
         Category category = Category.builder()
-                .CategoryName(categoryRequestDTO.getCategoryName())
-                .CategoryDescription(categoryRequestDTO.getCategoryDescription())
+                .categoryName(categoryRequestDTO.getCategoryName())
+                .categoryDescription(categoryRequestDTO.getCategoryDescription())
                 .build();
         categoryRepository.save(category);
         log.info("Category {} is saved!", category.getId());

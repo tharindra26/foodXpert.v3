@@ -1,30 +1,43 @@
 package com.foodXpert.productservice.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-@Document(value = "f_products")
+@Entity
+@Table(name = "products")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 public class Product {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
     private String productName;
+
+    @Column(nullable = false)
     private String productDescription;
-    @DBRef
-    private List<Category> productCategories;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category productCategory;
+
+    @Column(nullable = false)
     private String productUnit;
+
+    @Column(nullable = false)
     private BigDecimal productPricePerUnit;
+
+    @Column(nullable = false)
     private int quantity;
+
+    @Column(nullable = false)
     private boolean deleted;
 }

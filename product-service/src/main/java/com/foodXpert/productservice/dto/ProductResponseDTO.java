@@ -14,11 +14,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductResponseDTO {
-    private String id;
+    private Long id;
     private String productName;
     private String productDescription;
-    private List<Category> productCategories;
+    private Category productCategory;
     private String productUnit;
     private BigDecimal productPricePerUnit;
+    private int quantity;
     private boolean deleted;
 }

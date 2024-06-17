@@ -16,7 +16,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping
-    public String createCategory(@RequestBody CategoryRequestDTO categoryRequestDTO) {
+    public Long createCategory(@RequestBody CategoryRequestDTO categoryRequestDTO) {
         return categoryService.createCategory(categoryRequestDTO);
     }
 }

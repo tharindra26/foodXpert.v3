@@ -19,7 +19,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String createProduct(@RequestBody ProductRequestDTO productRequest) {
+    public Long createProduct(@RequestBody ProductRequestDTO productRequest) {
         return productService.createProduct(productRequest);
     }
 
@@ -29,24 +29,24 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ProductResponseDTO getProductById(@PathVariable String id) {
+    public ProductResponseDTO getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductResponseDTO updateProduct(@PathVariable String id, @RequestBody ProductRequestDTO productRequest) {
+    public ProductResponseDTO updateProduct(@PathVariable Long id, @RequestBody ProductRequestDTO productRequest) {
         return productService.updateProduct(id, productRequest);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProduct(@PathVariable String id) {
+    public void deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
 
     @GetMapping("/{productId}/availability")
-    public ProductAvailabilityResponseDTO checkProductAvailability(@PathVariable String productId) {
+    public ProductAvailabilityResponseDTO checkProductAvailability(@PathVariable Long productId) {
         return productService.checkProductAvailability(productId);
     }
 }
