@@ -1,35 +1,12 @@
 package com.foodXpert.productservice.service;
 
-import com.foodXpert.productservice.dto.CategoryRequestDTO;
+import com.foodXpert.productservice.dto.requests.CategoryRequestDTO;
+import com.foodXpert.productservice.dto.responses.GenericAddOrUpdateResponse;
 import com.foodXpert.productservice.model.Category;
-import com.foodXpert.productservice.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-@Service
-@RequiredArgsConstructor
-@Slf4j //coming from lombok. to add the logs
-public class CategoryService {
-
-    private final CategoryRepository categoryRepository;
-
-    public Long createCategory(CategoryRequestDTO categoryRequestDTO) {
-        Category category = Category.builder()
-                .categoryName(categoryRequestDTO.getCategoryName())
-                .categoryDescription(categoryRequestDTO.getCategoryDescription())
-                .build();
-        categoryRepository.save(category);
-        log.info("Category {} is saved!", category.getId());
-        return category.getId();
-    }
-
-    //get all categories function
-    public List<Category> getAllProductCategories() {
-        return categoryRepository.findAll();
-    }
-
+public interface CategoryService {
+    public GenericAddOrUpdateResponse<CategoryRequestDTO> createCategory(CategoryRequestDTO categoryRequestDTO);
+    public List<Category> getAllProductCategories();
 }

@@ -38,6 +38,8 @@ public class Product {
     @Column(nullable = false)
     private int quantity;
 
+    private String productImagePath;
+
     @Column(nullable = false)
     private boolean deleted;
 }

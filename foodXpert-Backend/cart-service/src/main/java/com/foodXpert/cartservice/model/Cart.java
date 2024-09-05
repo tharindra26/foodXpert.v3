@@ -2,21 +2,29 @@ package com.foodXpert.cartservice.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "f_carts")
+@Entity
+@Table(name = "carts")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cart {
     @Id
-    private String id;
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String userEmail;
+
+    @Column(nullable = false)
     private String cartName;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> items;
+
+    @Column(nullable = false)
     private boolean checkedOut;
-    private boolean deleted = false;
 }

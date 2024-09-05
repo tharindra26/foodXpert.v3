@@ -1,5 +1,9 @@
 package com.foodXpert.userservice.dto;
 
+import com.foodXpert.userservice.enums.UserRole;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,5 +17,6 @@ public class UserRequestDTO {
     private String username;
     private String password;
     private String email;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 }

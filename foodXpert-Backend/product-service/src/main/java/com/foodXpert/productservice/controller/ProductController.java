@@ -1,11 +1,12 @@
 package com.foodXpert.productservice.controller;
 
-import com.foodXpert.productservice.dto.ProductAvailabilityResponseDTO;
-import com.foodXpert.productservice.dto.ProductRequestDTO;
-import com.foodXpert.productservice.dto.ProductResponseDTO;
+import com.foodXpert.productservice.dto.responses.products.ProductAvailabilityResponseDTO;
+import com.foodXpert.productservice.dto.requests.ProductRequestDTO;
+import com.foodXpert.productservice.dto.responses.products.ProductResponseDTO;
 import com.foodXpert.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductResponseDTO> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
+        return ResponseEntity.ok(productService.getAllProducts());
     }
 
     @GetMapping("/{id}")
